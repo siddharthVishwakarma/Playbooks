@@ -1,0 +1,19 @@
+---
+- name: File Module
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Copy a File to the Server
+      copy:
+        src: /home/ubuntu/new2.txt
+        dest: /tmp
+        backup: true
+        
+    - name: Creating a file in server
+      file:
+        path: /tmp/newfile.txt
+        state: touch
+        owner: ubuntu
+        mode: '0777'
+  
