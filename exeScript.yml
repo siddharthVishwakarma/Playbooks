@@ -1,0 +1,10 @@
+---
+- name: Executing Shell Script
+  hosts: all
+
+  tasks:
+    - name: Execuite the shell
+      shell: ./shell.sh > /tmp/shell.log
+      args:
+        chdir: /home/ubuntu/
+        creates: /tmp/shell.log
