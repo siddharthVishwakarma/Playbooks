@@ -1,0 +1,9 @@
+---
+- name: Kill process
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Find a task and Kill
+      shell: "pgrip nginx | xargs kill"
+      ignore_errors: yes
