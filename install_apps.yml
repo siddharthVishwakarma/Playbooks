@@ -1,0 +1,21 @@
+---
+- name: Install and start the services
+  hosts: all
+  become: true
+  vars:
+    - apps: [nginx, telnet, firewalld]
+
+  tasks:
+    - name: Installing apps
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ apps }}"
+      notify: start service
+
+  handlers:
+    - name: start service
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
